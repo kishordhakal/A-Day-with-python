@@ -6,13 +6,13 @@ def delete_multiple_files(folder_path:str,file_path:str):
     """
     deleted_all = True
     try:
-        file = open(file_path)
-        for each in file:
-            file_name = each.strip()
-            file_to_delete = folder_path + '\\' + file_name
-            res = delete_operatoin(file_to_delete)
-            if res == False:
-                deleted_all = False
+        with open(file_path) as file:
+            for each in file:
+                file_name = each.strip()
+                file_to_delete = folder_path + '\\' + file_name
+                res = delete_operatoin(file_to_delete)
+                if res == False:
+                    deleted_all = False
         print("Success!, All The files are deleted ") if deleted_all == True else print("Some files were not FOUND !!!")
     except FileNotFoundError:
         print(f"The file at '{file_path}' does not exist.")
